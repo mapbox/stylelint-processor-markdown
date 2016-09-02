@@ -9,4 +9,5 @@ Uses [remark](http://remark.js.org/) to parse the markdown.
 Each of these is fixable with a little elbow grease.
 
 - Only CSS blocks are linted. Theoretically, this could support the other syntaxes that stylelint supports.
-- Will not return accurate column positions for indented code blocks.
+- Column positions will be consistently off for indented code blocks, by the amount of the block's indentation.
+- Line numbers will be consistently off if code blocks start or end with empty lines.

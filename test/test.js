@@ -7,6 +7,54 @@ const path = require('path');
 
 const pathToProcessor = path.join(__dirname, '../index.js');
 
+const oneExpectations = [
+  {
+    line: 8,
+    column: 6,
+    rule: 'block-no-empty',
+    severity: 'error',
+    text: 'Unexpected empty block (block-no-empty)',
+  },
+  {
+    line: 14,
+    column: 5,
+    rule: 'indentation',
+    severity: 'error',
+    text: 'Expected indentation of 0 spaces (indentation)',
+  },
+  {
+    line: 15,
+    column: 5,
+    rule: 'indentation',
+    severity: 'error',
+    text: 'Expected indentation of 0 spaces (indentation)',
+  },
+  {
+    line: 15,
+    column: 10,
+    rule: 'block-no-empty',
+    severity: 'error',
+    text: 'Unexpected empty block (block-no-empty)',
+  },
+];
+
+const twoExpectations = [
+  {
+    line: 12,
+    column: 5,
+    rule: 'indentation',
+    severity: 'error',
+    text: 'Expected indentation of 0 spaces (indentation)',
+  },
+  {
+    line: 12,
+    column: 10,
+    rule: 'block-no-empty',
+    severity: 'error',
+    text: 'Unexpected empty block (block-no-empty)',
+  },
+];
+
 test('file one', (t) => {
   const fixture = path.join(__dirname, './fixtures/one.md');
   stylelint.lint({
@@ -22,36 +70,7 @@ test('file one', (t) => {
     t.equal(data.results.length, 1, 'number of results');
     const result = data.results[0];
     t.equal(result.source, fixture, 'filename');
-    t.deepEqual(_.orderBy(result.warnings, ['line', 'column']), [
-      {
-        line: 8,
-        column: 6,
-        rule: 'block-no-empty',
-        severity: 'error',
-        text: 'Unexpected empty block (block-no-empty)',
-      },
-      {
-        line: 14,
-        column: 5,
-        rule: 'indentation',
-        severity: 'error',
-        text: 'Expected indentation of 0 spaces (indentation)',
-      },
-      {
-        line: 15,
-        column: 5,
-        rule: 'indentation',
-        severity: 'error',
-        text: 'Expected indentation of 0 spaces (indentation)',
-      },
-      {
-        line: 15,
-        column: 10,
-        rule: 'block-no-empty',
-        severity: 'error',
-        text: 'Unexpected empty block (block-no-empty)',
-      },
-    ]);
+    t.deepEqual(_.orderBy(result.warnings, ['line', 'column']), oneExpectations);
     t.end();
   }).catch(t.threw);
 });
@@ -72,22 +91,7 @@ test('file two', (t) => {
     const result = data.results[0];
     t.equal(result.source, fixture, 'filename');
 
-    t.deepEqual(_.orderBy(result.warnings, ['line', 'column']), [
-      {
-        line: 12,
-        column: 5,
-        rule: 'indentation',
-        severity: 'error',
-        text: 'Expected indentation of 0 spaces (indentation)',
-      },
-      {
-        line: 12,
-        column: 10,
-        rule: 'block-no-empty',
-        severity: 'error',
-        text: 'Unexpected empty block (block-no-empty)',
-      },
-    ]);
+    t.deepEqual(_.orderBy(result.warnings, ['line', 'column']), twoExpectations);
     t.end();
   }).catch(t.threw);
 });
@@ -108,54 +112,10 @@ test('files one and two', (t) => {
     t.equal(data.results.length, 2, 'number of results');
 
     t.equal(data.results[0].source, fixtureOne);
-    t.deepEqual(_.orderBy(data.results[0].warnings, ['line', 'column']), [
-      {
-        line: 8,
-        column: 6,
-        rule: 'block-no-empty',
-        severity: 'error',
-        text: 'Unexpected empty block (block-no-empty)',
-      },
-      {
-        line: 14,
-        column: 5,
-        rule: 'indentation',
-        severity: 'error',
-        text: 'Expected indentation of 0 spaces (indentation)',
-      },
-      {
-        line: 15,
-        column: 5,
-        rule: 'indentation',
-        severity: 'error',
-        text: 'Expected indentation of 0 spaces (indentation)',
-      },
-      {
-        line: 15,
-        column: 10,
-        rule: 'block-no-empty',
-        severity: 'error',
-        text: 'Unexpected empty block (block-no-empty)',
-      },
-    ]);
+    t.deepEqual(_.orderBy(data.results[0].warnings, ['line', 'column']), oneExpectations);
 
     t.equal(data.results[1].source, fixtureTwo);
-    t.deepEqual(_.orderBy(data.results[1].warnings, ['line', 'column']), [
-      {
-        line: 12,
-        column: 5,
-        rule: 'indentation',
-        severity: 'error',
-        text: 'Expected indentation of 0 spaces (indentation)',
-      },
-      {
-        line: 12,
-        column: 10,
-        rule: 'block-no-empty',
-        severity: 'error',
-        text: 'Unexpected empty block (block-no-empty)',
-      },
-    ]);
+    t.deepEqual(_.orderBy(data.results[1].warnings, ['line', 'column']), twoExpectations);
 
     t.end();
   }).catch(t.threw);

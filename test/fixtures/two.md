@@ -13,7 +13,9 @@ And some other text.
 ```
 {% endcapture %}
 
-Does this work with jekyll tags?
-{{things | markdownify}}
+Does this work with Jekyll tags and HTML?
+<div>
+  {{things | markdownify}}
+</div>
 
 And the end.

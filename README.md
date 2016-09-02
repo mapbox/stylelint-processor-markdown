@@ -2,7 +2,7 @@
 
 A [stylelint processor](http://stylelint.io/user-guide/configuration/#processors) for linting CSS code blocks in markdown.
 
-Uses [remark](http://remark.js.org/) to parse the markdown.
+Uses [remark](https://github.com/wooorm/remark) to parse the markdown.
 
 ## Caveats
 

@@ -6,6 +6,9 @@ const splitLines = require('split-lines');
 const ignoredRules = new Set([
   // The Markdown parser strips trailing newlines in code fences
   'no-missing-end-of-source-newline',
+  // We don't want to reject markdown files just because they
+  // have no CSS
+  'no-empty-source',
 ]);
 
 const sourceToLineMap = new Map();

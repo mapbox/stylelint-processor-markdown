@@ -13,6 +13,7 @@ const sourceToLineMap = new Map();
 function transformer(options) {
   options = options || {};
   options.syntax = options.syntax || 'css';
+  options.separator = options.separator || '\n\n';
 
   return function transformCode(code, filepath) {
     const extractedToSourceLineMap = new Map();
@@ -31,7 +32,8 @@ function transformer(options) {
         extractedToSourceLineMap.set(currentExtractedCodeLine, startLine + i);
       }
 
-      extractedCode += cssContent + '\n';
+      currentExtractedCodeLine += 1;
+      extractedCode += cssContent + options.separator;
     });
 
     sourceToLineMap.set(filepath, extractedToSourceLineMap);

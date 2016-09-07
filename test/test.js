@@ -40,15 +40,22 @@ const oneExpectations = [
 
 const twoExpectations = [
   {
-    line: 12,
+    line: 10,
     column: 5,
     rule: 'indentation',
     severity: 'error',
     text: 'Expected indentation of 0 spaces (indentation)',
   },
   {
-    line: 12,
+    line: 10,
     column: 10,
+    rule: 'block-no-empty',
+    severity: 'error',
+    text: 'Unexpected empty block (block-no-empty)',
+  },
+  {
+    line: 25,
+    column: 6,
     rule: 'block-no-empty',
     severity: 'error',
     text: 'Unexpected empty block (block-no-empty)',

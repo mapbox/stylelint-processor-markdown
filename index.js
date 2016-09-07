@@ -12,7 +12,7 @@ const sourceToLineMap = new Map();
 
 function transformer(options) {
   options = options || {};
-  options.syntaxes = options.syntaxes || ['css'];
+  options.syntax = options.syntax || 'css';
 
   return function transformCode(code, filepath) {
     const extractedToSourceLineMap = new Map();
@@ -20,7 +20,7 @@ function transformer(options) {
     let currentExtractedCodeLine = 0;
 
     getSyntaxBlocks(code, options).forEach((block) => {
-      const cssContent = block.value;
+      const cssContent = block.raw;
       if (!cssContent) return;
 
       const startLine = block.position.start.line + 1;

@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "lint": "eslint .",
-    "test": "tap test/test.js"
+    "test": "tap test/test.js test/**.test.js"
   },
   "repository": {
     "type": "git",
@@ -28,12 +28,14 @@
     "eslint": "^3.4.0",
     "eslint-config-davidtheclark-node": "^0.1.1",
     "eslint-plugin-node": "^2.0.0",
+    "lodash": "^4.15.0",
     "stylelint": "^7.2.0",
     "tap": "^7.0.0"
   },
   "dependencies": {
     "remark": "^6.0.0",
     "split-lines": "^1.1.0",
-    "unist-util-find-all-after": "^1.0.0"
+    "unist-util-find-all-after": "^1.0.0",
+    "unist-util-source": "^1.0.1"
   }
 }

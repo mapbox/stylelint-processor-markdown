@@ -12,7 +12,7 @@ And some other text.
 
 ```css
     .foo { color: pink; }
-    .bar {}
+      .bar {}
 ```
 
 And the end.

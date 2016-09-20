@@ -6,6 +6,11 @@ const _ = require('lodash');
 const path = require('path');
 
 const pathToProcessor = path.join(__dirname, '../index.js');
+const rules = {
+  'block-no-empty': true,
+  indentation: 2,
+  'no-missing-end-of-source-newline': 2,
+};
 
 const oneExpectations = [
   {
@@ -16,22 +21,15 @@ const oneExpectations = [
     text: 'Unexpected empty block (block-no-empty)',
   },
   {
-    line: 14,
-    column: 5,
+    line: 15,
+    column: 7,
     rule: 'indentation',
     severity: 'error',
     text: 'Expected indentation of 0 spaces (indentation)',
   },
   {
     line: 15,
-    column: 5,
-    rule: 'indentation',
-    severity: 'error',
-    text: 'Expected indentation of 0 spaces (indentation)',
-  },
-  {
-    line: 15,
-    column: 10,
+    column: 12,
     rule: 'block-no-empty',
     severity: 'error',
     text: 'Unexpected empty block (block-no-empty)',
@@ -68,10 +66,7 @@ test('file one', (t) => {
     files: [fixture],
     config: {
       processors: [pathToProcessor],
-      rules: {
-        'block-no-empty': true,
-        indentation: 2,
-      },
+      rules,
     },
   }).then((data) => {
     t.equal(data.results.length, 1, 'number of results');
@@ -88,10 +83,7 @@ test('file two', (t) => {
     files: [fixture],
     config: {
       processors: [pathToProcessor],
-      rules: {
-        'block-no-empty': true,
-        indentation: 2,
-      },
+      rules,
     },
   }).then((data) => {
     t.equal(data.results.length, 1, 'number of results');
@@ -110,10 +102,7 @@ test('files one and two', (t) => {
     files: [fixtureOne, fixtureTwo],
     config: {
       processors: [pathToProcessor],
-      rules: {
-        'block-no-empty': true,
-        indentation: 2,
-      },
+      rules,
     },
   }).then((data) => {
     t.equal(data.results.length, 2, 'number of results');

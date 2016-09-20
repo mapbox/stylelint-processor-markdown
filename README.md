@@ -1,11 +1,8 @@
 # stylelint-processor-markdown
 
-A [stylelint processor](http://stylelint.io/user-guide/configuration/#processors) for linting CSS code blocks in markdown.
+A [stylelint processor](http://stylelint.io/user-guide/configuration/#processors) for using stylelint on [GFM fenced code blocks](https://help.github.com/articles/creating-and-highlighting-code-blocks/) in Markdown.
 
-Uses [remark](https://github.com/wooorm/remark) to parse the markdown.
-
-<!--
-Will not work until stylelint supports processor options
+Uses [remark](https://github.com/wooorm/remark) to parse the Markdown.
 
 ## Options
 
@@ -13,13 +10,8 @@ Will not work until stylelint supports processor options
 
 Type: `String`, Default: `'css'`
 
-This specificies which language of code block will be linted. The default is <code>```css</code>.
+Specify the language for code blocks that will be sent through stylelint.
 
-If you would like to lint another syntax supported by stylelint, change this option (e.g. to `'scss'`) and make sure you [tell stylelint about your non-standard syntax](http://stylelint.io/user-guide/css-processors/).
+By default, this module looks for CSS blocks. If you would like to lint another syntax supported by stylelint, change this option to match the code blocks language (e.g. to `'scss'` for <code>```scss</code> blocks) and make sure you [tell stylelint about your non-standard syntax](http://stylelint.io/user-guide/css-processors/) when you run it.
 
-If you have one markdown file with code blocks of multiple syntaxes, just lint it a couple of times, once for each syntax. -->
-
-## Caveats
-
-- Only supports CSS at the moment (no non-standard syntax).
-- It does not take kindly to code blocks that are indented. Start your code blocks at column 1, as is usually the case, and everything will be fine.
+If you have one Markdown file with code blocks of multiple syntaxes, you'll need to lint it multiple times, once for each syntax.

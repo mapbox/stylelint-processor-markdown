@@ -1,5 +1,6 @@
 'use strict';
 
+const path = require('path');
 const getSyntaxBlocks = require('./lib/getSyntaxBlocks');
 const splitLines = require('split-lines');
 const reindent = require('./lib/reindent');
@@ -17,6 +18,10 @@ function transformer(options) {
   options.syntax = options.syntax || 'css';
 
   return function transformCode(code, filepath) {
+    // Workaround for stylelint bug
+    // https://github.com/stylelint/stylelint/issues/2195
+    if (!path.isAbsolute(filepath)) filepath = path.join(process.cwd(), filepath);
+
     const extractedToSourceLineMap = new Map();
     let extractedCode = '';
     let currentExtractedCodeLine = 0;

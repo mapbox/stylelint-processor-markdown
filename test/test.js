@@ -62,7 +62,7 @@ const twoExpectations = [
 
 test('file one', (t) => {
   const fixture = path.join(__dirname, './fixtures/one.md');
-  stylelint.lint({
+  return stylelint.lint({
     files: [fixture],
     config: {
       processors: [pathToProcessor],
@@ -74,12 +74,17 @@ test('file one', (t) => {
     t.equal(result.source, fixture, 'filename');
     t.deepEqual(_.orderBy(result.warnings, ['line', 'column']), oneExpectations);
     t.end();
-  }).catch(t.threw);
+  });
 });
 
-test('file two', (t) => {
-  const fixture = path.join(__dirname, './fixtures/two.md');
-  stylelint.lint({
+test('file two, relative to process.cwd', (t) => {
+  const actualCwd = process.cwd();
+  process.chdir(path.join(__dirname, 'fixtures'));
+  const cleanup = () => process.chdir(actualCwd);
+
+  const fixture = 'two.md';
+
+  return stylelint.lint({
     files: [fixture],
     config: {
       processors: [pathToProcessor],
@@ -88,17 +93,21 @@ test('file two', (t) => {
   }).then((data) => {
     t.equal(data.results.length, 1, 'number of results');
     const result = data.results[0];
-    t.equal(result.source, fixture, 'filename');
+    t.equal(result.source, path.join(process.cwd(), fixture), 'filename');
 
     t.deepEqual(_.orderBy(result.warnings, ['line', 'column']), twoExpectations);
+    cleanup();
     t.end();
-  }).catch(t.threw);
+  }).catch((err) => {
+    cleanup();
+    throw err;
+  });
 });
 
 test('files one and two', (t) => {
   const fixtureOne = path.join(__dirname, './fixtures/one.md');
   const fixtureTwo = path.join(__dirname, './fixtures/two.md');
-  stylelint.lint({
+  return stylelint.lint({
     files: [fixtureOne, fixtureTwo],
     config: {
       processors: [pathToProcessor],
@@ -114,5 +123,5 @@ test('files one and two', (t) => {
     t.deepEqual(_.orderBy(data.results[1].warnings, ['line', 'column']), twoExpectations);
 
     t.end();
-  }).catch(t.threw);
+  });
 });

@@ -6,6 +6,12 @@ A [stylelint processor](http://stylelint.io/user-guide/configuration/#processors
 
 Uses [remark](https://github.com/wooorm/remark) to parse the Markdown.
 
+## Install
+
+```
+npm install @mapbox/stylelint-processor-markdown
+```
+
 ## Options
 
 ### syntax

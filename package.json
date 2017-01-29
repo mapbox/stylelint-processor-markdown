@@ -1,5 +1,5 @@
 {
-  "name": "stylelint-processor-markdown",
+  "name": "@mapbox/stylelint-processor-markdown",
   "version": "0.3.0",
   "description": "A stylelint processor for markdown",
   "main": "index.js",

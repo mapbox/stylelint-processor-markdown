@@ -5,12 +5,6 @@ const getSyntaxBlocks = require('./lib/getSyntaxBlocks');
 const splitLines = require('split-lines');
 const reindent = require('./lib/reindent');
 
-const ignoredRules = new Set([
-  // We don't want to reject markdown files just because they
-  // have no CSS
-  'no-empty-source',
-]);
-
 const sourceToLineMap = new Map();
 
 function transformer(options) {
@@ -55,7 +49,6 @@ function transformer(options) {
 function transformResult(result, filepath) {
   const extractedToSourceLineMap = sourceToLineMap.get(filepath);
   const newWarnings = result.warnings.reduce((memo, warning) => {
-    if (ignoredRules.has(warning.rule)) return memo;
     const warningSourceMap = extractedToSourceLineMap.get(warning.line);
     if (warning.line) {
       warning.line = warningSourceMap.line;

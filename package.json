@@ -26,17 +26,17 @@
   },
   "homepage": "https://github.com/mapbox/stylelint-processor-markdown#readme",
   "devDependencies": {
-    "eslint": "^3.4.0",
+    "eslint": "^7.2.0",
     "eslint-config-davidtheclark-node": "^0.2.1",
-    "eslint-plugin-node": "^3.0.5",
+    "eslint-plugin-node": "^11.1.0",
     "lodash": "^4.15.0",
-    "stylelint": "^7.3.0",
-    "tap": "^10.0.0"
+    "stylelint": "^13.6.0",
+    "tap": "^14.10.7"
   },
   "dependencies": {
-    "remark": "^6.0.0",
-    "split-lines": "^1.1.0",
-    "unist-util-find-all-after": "^1.0.0",
-    "unist-util-source": "^1.0.1"
+    "remark": "^12.0.0",
+    "split-lines": "^2.0.0",
+    "unist-util-find-all-after": "^3.0.1",
+    "unist-util-source": "^2.0.0"
   }
 }

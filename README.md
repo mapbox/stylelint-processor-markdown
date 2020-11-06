@@ -1,6 +1,6 @@
 # stylelint-processor-markdown
 
-[![Build Status](https://travis-ci.org/mapbox/stylelint-processor-markdown.svg?branch=main)](https://travis-ci.org/mapbox/stylelint-processor-markdown)
+[![Build Status](https://travis-ci.com/mapbox/stylelint-processor-markdown.svg?branch=main)](https://travis-ci.com/mapbox/stylelint-processor-markdown)
 
 A [stylelint processor](http://stylelint.io/user-guide/configuration/#processors) for using stylelint on [GFM fenced code blocks](https://help.github.com/articles/creating-and-highlighting-code-blocks/) in Markdown.
 
